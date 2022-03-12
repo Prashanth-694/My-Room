@@ -13,7 +13,7 @@ public class ProductDetails implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-@Id
+@Field
 private int id;
 @Field
 private String itemName;
@@ -24,11 +24,11 @@ private int userId ;
 @Field
 private String createdDate;
 @Field
-private double amount;
+private int amount;
 public ProductDetails() {
 	super();
 }
-public ProductDetails(int id, String itemName, String description, int userId, String createdDate, double amount) {
+public ProductDetails(int id, String itemName, String description, int userId, String createdDate, int amount) {
 	super();
 	this.id = id;
 	this.itemName = itemName;
@@ -67,10 +67,10 @@ public String getCreatedDate() {
 public void setCreatedDate(String createdDate) {
 	this.createdDate = createdDate;
 }
-public double getAmount() {
+public int getAmount() {
 	return amount;
 }
-public void setAmount(double amount) {
+public void setAmount(int amount) {
 	this.amount = amount;
 }
 public static long getSerialversionuid() {

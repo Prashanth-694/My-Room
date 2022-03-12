@@ -1,11 +1,17 @@
 package com.myroom.model;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document
-public class Users {
+public class Users implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 @Id
 private int userId;
 @Field
@@ -19,14 +25,14 @@ private String role;
 @Field
 private String img;
 @Field
-private String spentAmount;
+private int spentAmount;
 @Field
-private String totalAmount;
+private int totalAmount;
 public Users() {
 	super();
 }
-public Users(int userId, String userName, String emailId, String password, String role, String img, String spentAmount,
-		String totalAmount) {
+public Users(int userId, String userName, String emailId, String password, String role, String img, int spentAmount,
+		int totalAmount) {
 	super();
 	this.userId = userId;
 	this.userName = userName;
@@ -73,17 +79,20 @@ public String getImg() {
 public void setImg(String img) {
 	this.img = img;
 }
-public String getSpentAmount() {
+public int getSpentAmount() {
 	return spentAmount;
 }
-public void setSpentAmount(String spentAmount) {
+public void setSpentAmount(int spentAmount) {
 	this.spentAmount = spentAmount;
 }
-public String getTotalAmount() {
+public int getTotalAmount() {
 	return totalAmount;
 }
-public void setTotalAmount(String totalAmount) {
+public void setTotalAmount(int totalAmount) {
 	this.totalAmount = totalAmount;
+}
+public static long getSerialversionuid() {
+	return serialVersionUID;
 }
 
 }
