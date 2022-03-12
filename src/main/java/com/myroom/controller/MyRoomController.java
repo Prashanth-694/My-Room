@@ -24,13 +24,13 @@ UsersRepo usersRepo;
 
 @Autowired
 MyRoomService myRoomService;
-@PostMapping("/insertUsers")
-public Users insertUsers(@RequestParam("img") MultipartFile file) throws IOException {
-	System.out.println("inside insert method");
-	System.out.println(file.getBytes());
-	Users users=new Users(2,"pm","email","pass","role",file.getBytes());
-	return usersRepo.save(users);
-}
+//@PostMapping("/insertUsers")
+//public Users insertUsers(@) throws IOException {
+//	System.out.println("inside insert method");
+//	System.out.println(file.getBytes());
+//	//Users users=new Users(2,"pm","email","pass","role",file.getBytes());
+//	return usersRepo.save(users);
+//}
 
 @GetMapping("/fetchUsers")
 public List<Users> fetchUsers() {

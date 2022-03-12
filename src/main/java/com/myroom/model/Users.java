@@ -17,11 +17,16 @@ private String password;
 @Field
 private String role;
 @Field
-private byte[] img;
+private String img;
+@Field
+private String spentAmount;
+@Field
+private String totalAmount;
 public Users() {
 	super();
 }
-public Users(int userId, String userName, String emailId, String password, String role, byte[] img) {
+public Users(int userId, String userName, String emailId, String password, String role, String img, String spentAmount,
+		String totalAmount) {
 	super();
 	this.userId = userId;
 	this.userName = userName;
@@ -29,6 +34,8 @@ public Users(int userId, String userName, String emailId, String password, Strin
 	this.password = password;
 	this.role = role;
 	this.img = img;
+	this.spentAmount = spentAmount;
+	this.totalAmount = totalAmount;
 }
 public int getUserId() {
 	return userId;
@@ -60,11 +67,23 @@ public String getRole() {
 public void setRole(String role) {
 	this.role = role;
 }
-public byte[] getImg() {
+public String getImg() {
 	return img;
 }
-public void setImg(byte[] img) {
+public void setImg(String img) {
 	this.img = img;
+}
+public String getSpentAmount() {
+	return spentAmount;
+}
+public void setSpentAmount(String spentAmount) {
+	this.spentAmount = spentAmount;
+}
+public String getTotalAmount() {
+	return totalAmount;
+}
+public void setTotalAmount(String totalAmount) {
+	this.totalAmount = totalAmount;
 }
 
 }
