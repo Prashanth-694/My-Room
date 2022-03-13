@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myroom.model.Users;
 import com.myroom.repo.UsersRepo;
 import com.myroom.service.UsersService;
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"*", "http://5thfloor401.ccbp.tech"})
 @RestController
 public class UsersController {
 
