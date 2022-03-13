@@ -26,6 +26,7 @@ MyRoomService myRoomService;
 public List<ProductDetails> fetchUsers(@PathVariable int userId) {
 	return myRoomService.fetchProductDetailsById(userId);
 }
+
 @PostMapping("/insertProductDetails")
 public ProductDetails insertProductDetails(@RequestBody ProductDetails details)
 {

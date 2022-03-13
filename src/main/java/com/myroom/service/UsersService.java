@@ -21,4 +21,8 @@ return usersRepo.save(users);
 public  List<Users> fetchAllUsers() {
 	return usersRepo.findAll();
 }
+
+//public  Users validUser(Users user) {
+//	return usersRepo.findBy(user);
+//}
 }

@@ -8,4 +8,5 @@ import com.myroom.model.ProductDetails;
 
 public interface ProductRepository extends MongoRepository<ProductDetails, Integer> {
 List<ProductDetails> findByUserId(int userId);
+
 }
