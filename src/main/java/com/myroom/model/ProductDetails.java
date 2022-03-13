@@ -13,8 +13,8 @@ public class ProductDetails implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-@Field
-private int id;
+//	@Id
+private String _id;
 @Field
 private String itemName;
 @Field
@@ -28,21 +28,21 @@ private int amount;
 public ProductDetails() {
 	super();
 }
-public ProductDetails(int id, String itemName, String description, int userId, String createdDate, int amount) {
+public ProductDetails( String itemName, String description, int userId, String createdDate, int amount) {
 	super();
-	this.id = id;
+	//this.id = id;
 	this.itemName = itemName;
 	this.description = description;
 	this.userId = userId;
 	this.createdDate = createdDate;
 	this.amount = amount;
 }
-public int getId() {
-	return id;
+public String getId() {
+	return _id;
 }
-public void setId(int id) {
-	this.id = id;
-}
+//public void setId(int id) {
+//	this.id = id;
+//}
 public String getItemName() {
 	return itemName;
 }
