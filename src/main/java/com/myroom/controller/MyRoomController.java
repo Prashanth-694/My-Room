@@ -39,12 +39,16 @@ public List<ProductDetails> fetchUsers(@PathVariable int userId) {
 
 @PostMapping("/insertProductDetails")
 public ProductDetails insertProductDetails(@RequestBody ProductDetails details)
-{	String url = "https://flat401.ccbp.tech";
+{
 	ProductDetails productDetails =myRoomService.insertProducts(details);
 	Users users=service.fetchById(details.getUserId());
 	System.out.println(users.getUserName());
-	messageService.sendMessage(users.getUserName(),details.getItemName(),details.getDescription(), details.getAmount(), details.getCreatedDate(),url);
+	messageService.sendMessage(users.getUserName(),details.getItemName(),details.getDescription(), details.getAmount(), details.getCreatedDate());
 	return productDetails;
+
 }
+
+
+
 }
 
