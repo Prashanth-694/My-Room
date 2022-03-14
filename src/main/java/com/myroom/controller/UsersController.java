@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myroom.model.Users;
 import com.myroom.repo.UsersRepo;
+import com.myroom.service.MessageService;
 import com.myroom.service.UsersService;
 @CrossOrigin(origins = {"*", "http://5thfloor401.ccbp.tech"})
 @RestController
@@ -20,6 +21,8 @@ public class UsersController {
 	UsersService usersService;
 	@Autowired
 	UsersRepo repo;
+	@Autowired
+	MessageService messageService;
 	@PostMapping("/insertUsersDetails")
 	public Users insertUsersDetails(@RequestBody Users users)
 	{
@@ -37,8 +40,12 @@ public class UsersController {
 		System.out.println(user);
 		return repo.findByEmailIdAndPassword(user.getEmailId(), user.getPassword());
 		
-		
-//		return usersService.validUser(user);
 	}
+//	@GetMapping("/sendSms")
+//	public void sendSms()
+//	{
+//		messageService.sendMessage();
+//		System.out.println("inside send sms");
+//	}
 	
 }

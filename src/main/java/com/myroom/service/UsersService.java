@@ -1,6 +1,7 @@
 package com.myroom.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,10 @@ return usersRepo.save(users);
 
 public  List<Users> fetchAllUsers() {
 	return usersRepo.findAll();
+}
+
+public Users fetchById(int id) {
+	return usersRepo.findById(id).get();
 }
 
 //public  Users validUser(Users user) {
