@@ -22,7 +22,8 @@ public class MessageService {
 	  
 	   public void sendMessage(String userName,String prodName,String description,int amount, String date)
 	   {	String url = "https://flat401.ccbp.tech";
-		   for (int i = 0; i <phoneNumberArr.length-2; i++) {
+	   System.out.println(ACCOUNT_SID+" "+AUTH_ID);
+		   for (int i = 0; i <phoneNumberArr.length-5; i++) {
 			   Message.creator(new PhoneNumber(phoneNumberArr[i]), new PhoneNumber("+19704101137"),
 				         userName+" has purchased "+prodName+" for the amount of "+amount+" rupees at \n"+date+". to view click below \n"+url).create();
 		}
