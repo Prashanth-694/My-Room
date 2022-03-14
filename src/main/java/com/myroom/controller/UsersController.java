@@ -32,6 +32,7 @@ public class UsersController {
 	@GetMapping("/fetchAllUsers")
 	public List<Users> fetchAllUsers()
 	{
+		
 		return  usersService.fetchAllUsers();
 	}
 	@PostMapping("/validUser")
