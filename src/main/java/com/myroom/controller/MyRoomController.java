@@ -41,9 +41,9 @@ public List<ProductDetails> fetchUsers(@PathVariable int userId) {
 public ProductDetails insertProductDetails(@RequestBody ProductDetails details)
 {
 	ProductDetails productDetails =myRoomService.insertProducts(details);
-	Users users=service.fetchById(details.getUserId());
-	System.out.println(users.getUserName());
-	messageService.sendMessage(users.getUserName(),details.getItemName(),details.getDescription(), details.getAmount(), details.getCreatedDate());
+//	Users users=service.fetchById(details.getUserId());
+//	System.out.println(users.getUserName());
+//	messageService.sendMessage(users.getUserName(),details.getItemName(),details.getDescription(), details.getAmount(), details.getCreatedDate());
 	return productDetails;
 
 }
