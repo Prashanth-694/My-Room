@@ -6,6 +6,7 @@ package com.myroom.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,20 +42,20 @@ public List<ProductDetails> fetchUsers(@PathVariable int userId) {
 @PostMapping("/insertProductDetails")
 public ProductDetails insertProductDetails(@RequestBody ProductDetails details)
 {
-	ProductDetails productDetails =myRoomService.insertProducts(details);
-//	Users users=service.fetchById(details.getUserId());
-//	System.out.println(users.getUserName());
-//	messageService.sendMessage(users.getUserName(),details.getItemName(),details.getDescription(), details.getAmount(), details.getCreatedDate());
-	return productDetails;
-
+	return myRoomService.insertProducts(details);
 }
 
 @PostMapping("/updateproductDetails")
-public ProductDetails updateproductDetails(@RequestBody ProductDetails details) {
+public ProductDetails updateproductDetails(@RequestBody ProductDetails details) 
+{
 	return myRoomService.updateProductDetails(details);
 }
 
-
+@PostMapping("/deleteById")
+public String deleteById(@RequestBody ProductDetails details) 
+{
+return	myRoomService.deleteById(details);
+}
 
 }
 

@@ -63,19 +63,18 @@ public class MyRoomService {
 			users.setSpentAmount(total);
 			usersRepo.save(users);
 		}
-		
-		
-			
-		
-		
-		
 		 return details;
-	
 	}
 
-//	private void elseif() {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	public String deleteById(ProductDetails productDetails) {
+	
+		ProductDetails details=	productRepository.findById(productDetails.getId());
+		Users users = usersRepo.findById(details.getUserId()).get();
+		int total=users.getSpentAmount()-details.getAmount();
+		users.setSpentAmount(total);
+		usersRepo.save(users);
+		productRepository.delete(productDetails);
+		return "Deleted Succesfully completed...!";
+	}
 
 }
