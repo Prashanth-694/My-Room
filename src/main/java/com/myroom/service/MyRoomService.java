@@ -34,26 +34,44 @@ public class MyRoomService {
 		return productRepository.findByUserId(userId);
 	}
 	
-//	public ProductDetails updateProductDetails(int id,ProductDetails productDetails)
-//	{
-//		ProductDetails details=productRepository.findById(id).get();
-//		int beforeAmount=details.getAmount();
-//		System.out.println("before amount "+details.getAmount());
-//		details.setItemName(productDetails.getItemName());
-//		details.setDescription(productDetails.getDescription());
-//		details.setAmount(productDetails.getAmount());
-//		details.setCreatedDate(productDetails.getCreatedDate());
-//		int afterAmount=details.getAmount();
-//		
-//		int finalAmount=beforeAmount-afterAmount;
-//		
-//		
-//			
-//		
-//		 productRepository.save(details);
-//		 System.out.println();
-//		 return details;
-//	}
+	public ProductDetails updateProductDetails(ProductDetails productDetails)
+	{    System.out.println(productDetails.getId());
+		ProductDetails details=productRepository.findById(productDetails.getId());
+		
+		int beforeAmount=details.getAmount();
+		
+		details.setItemName(productDetails.getItemName());
+		details.setDescription(productDetails.getDescription());
+		details.setAmount(productDetails.getAmount());
+		details.setCreatedDate(productDetails.getCreatedDate());
+		 productRepository.save(details);
+		int afterAmount=details.getAmount();
+		
+		int finalA=0;
+		Users users = usersRepo.findById(productDetails.getUserId()).get();
+		
+		if(beforeAmount>afterAmount)
+		{
+			finalA=beforeAmount-afterAmount;
+			int total=users.getSpentAmount()-finalA;
+			users.setSpentAmount(total);
+			usersRepo.save(users);
+		}
+		else if (beforeAmount<afterAmount) {
+			finalA=afterAmount-beforeAmount;
+			int total=users.getSpentAmount()+finalA;
+			users.setSpentAmount(total);
+			usersRepo.save(users);
+		}
+		
+		
+			
+		
+		
+		
+		 return details;
+	
+	}
 
 //	private void elseif() {
 //		// TODO Auto-generated method stub

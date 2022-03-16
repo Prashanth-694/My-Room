@@ -14,7 +14,7 @@ public class ProductDetails implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 //	@Id
-private String _id;
+private String id;
 @Field
 private String itemName;
 @Field
@@ -38,7 +38,7 @@ public ProductDetails( String itemName, String description, int userId, String c
 	this.amount = amount;
 }
 public String getId() {
-	return _id;
+	return id;
 }
 //public void setId(int id) {
 //	this.id = id;
