@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myroom.model.ProductDetails;
 //import com.myroom.model.Users;
 import com.myroom.repo.UsersRepo;
-import com.myroom.service.MessageService;
+//import com.myroom.service.MessageService;
 import com.myroom.service.MyRoomService;
 import com.myroom.service.UsersService;
 @CrossOrigin(origins = {"*", "https://myroom401.herokuapp.com"})
@@ -26,8 +26,8 @@ UsersRepo usersRepo;
 @Autowired
 MyRoomService myRoomService;
 
-@Autowired
-MessageService messageService;
+//@Autowired
+//MessageService messageService;
 
 @Autowired
 UsersService service;

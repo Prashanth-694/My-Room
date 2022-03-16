@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myroom.model.Users;
 import com.myroom.repo.UsersRepo;
-import com.myroom.service.MessageService;
+//import com.myroom.service.MessageService;
 import com.myroom.service.UsersService;
 @CrossOrigin(origins = {"*", "https://myroom401.herokuapp.com"})
 @RestController
@@ -21,8 +21,8 @@ public class UsersController {
 	UsersService usersService;
 	@Autowired
 	UsersRepo repo;
-	@Autowired
-	MessageService messageService;
+//	@Autowired
+//	MessageService messageService;
 	@PostMapping("/insertUsersDetails")
 	public Users insertUsersDetails(@RequestBody Users users)
 	{
