@@ -13,7 +13,7 @@ import com.myroom.model.Users;
 import com.myroom.repo.UsersRepo;
 import com.myroom.service.MessageService;
 import com.myroom.service.UsersService;
-@CrossOrigin(origins = {"*", "http://5thfloor401.ccbp.tech"})
+@CrossOrigin(origins = {"*", "https://myroom401.herokuapp.com"})
 @RestController
 public class UsersController {
 

@@ -1,8 +1,8 @@
 package com.myroom.controller;
 
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
+//import java.net.MalformedURLException;
+//import java.net.URISyntaxException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.myroom.model.ProductDetails;
-import com.myroom.model.Users;
+//import com.myroom.model.Users;
 import com.myroom.repo.UsersRepo;
 import com.myroom.service.MessageService;
 import com.myroom.service.MyRoomService;
 import com.myroom.service.UsersService;
-@CrossOrigin(origins = {"*", "http://5thfloor401.ccbp.tech"})
+@CrossOrigin(origins = {"*", "https://myroom401.herokuapp.com"})
 @RestController
 public class MyRoomController {
 @Autowired

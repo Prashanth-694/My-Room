@@ -34,30 +34,30 @@ public class MyRoomService {
 		return productRepository.findByUserId(userId);
 	}
 	
-	public ProductDetails updateProductDetails(int id,ProductDetails productDetails)
-	{
-		ProductDetails details=productRepository.findById(id).get();
-		int beforeAmount=details.getAmount();
-		System.out.println("before amount "+details.getAmount());
-		details.setItemName(productDetails.getItemName());
-		details.setDescription(productDetails.getDescription());
-		details.setAmount(productDetails.getAmount());
-		details.setCreatedDate(productDetails.getCreatedDate());
-		int afterAmount=details.getAmount();
-		
-		int finalAmount=beforeAmount-afterAmount;
-		
-		
-			
-		
-		 productRepository.save(details);
-		 System.out.println();
-		 return details;
-	}
+//	public ProductDetails updateProductDetails(int id,ProductDetails productDetails)
+//	{
+//		ProductDetails details=productRepository.findById(id).get();
+//		int beforeAmount=details.getAmount();
+//		System.out.println("before amount "+details.getAmount());
+//		details.setItemName(productDetails.getItemName());
+//		details.setDescription(productDetails.getDescription());
+//		details.setAmount(productDetails.getAmount());
+//		details.setCreatedDate(productDetails.getCreatedDate());
+//		int afterAmount=details.getAmount();
+//		
+//		int finalAmount=beforeAmount-afterAmount;
+//		
+//		
+//			
+//		
+//		 productRepository.save(details);
+//		 System.out.println();
+//		 return details;
+//	}
 
-	private void elseif() {
-		// TODO Auto-generated method stub
-		
-	}
+//	private void elseif() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 }
