@@ -8,6 +8,7 @@ public class MyRoomApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MyRoomApplication.class, args);
+//change
 	}
 
 }
