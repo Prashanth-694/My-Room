@@ -2,11 +2,9 @@ package com.myroom.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.myroom.model.ProductDetails;
-import com.myroom.model.Response;
 import com.myroom.model.Users;
 import com.myroom.repo.ProductRepository;
 import com.myroom.repo.UsersRepo;
@@ -17,6 +15,8 @@ public class MyRoomService {
 	ProductRepository productRepository;
 	@Autowired
 	UsersRepo usersRepo;
+	@Autowired
+	UsersService userService;	
 	int addAmount;
 
 	public ProductDetails insertProducts(ProductDetails productDetails) {
@@ -78,6 +78,17 @@ public class MyRoomService {
 		productRepository.delete(productDetails);
 		
 	return	productDetails;
+	}
+	public  void deleteallProducts() {
+		
+			productRepository.deleteAll();
+//		List<Users> list	=usersRepo.findAll();
+			List<Users> users = userService.fetchAllUsers();
+			for(Users user : users) {
+				user.setSpentAmount(0);
+				usersRepo.save(user);
+			}
+		
 	}
 
 }

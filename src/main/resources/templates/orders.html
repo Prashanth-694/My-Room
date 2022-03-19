@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .head{
+            background-color: rgb(120, 63, 194);
+            padding: 45px;
+        }
+        .text{
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .date{
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .light{
+            color: rgb(116, 126, 136);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+        .text-primary{
+            color: black;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .date-i{
+            color: black;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .summary{
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 1px 0 0 #7c7272;
+            display: flex;
+            text-align: center;
+            justify-content: space-evenly;
+            margin-top: -50px;
+        }
+        .sum-txt{
+            align-items: center;
+            display: flex;
+        }
+        .sum-txt-val{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .half{
+            color: rgb(120, 63, 194);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .bill{
+            display: flex;
+            justify-content: space-between;
+        }
+        th{
+            width: 33.3%;
+            background: rgb(197 192 192);
+            height: 35px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        td{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="head">
+            <h1 class="text">My-Room</h1>
+            <h1 class="text">Invoice</h1>
+            <p class="date">12/12/2022</p>
+        </div>
+        <div class="summary">
+            <div class="sum-txt">
+                <h1 class="sum-txt-val">Summary</h1>
+            </div>
+            <div>
+                <h1 class="text-primary">20,000/-<span class="light">.00</span></h1>
+                <p class="date-i">12-12-2022</p>
+            </div>    
+        </div>
+        <div class="body">
+            <h1 class="date-i">Account Summary</h1>
+            <h1 class="date-i">Total Amount : <span class="half">20,000/-</span></h1>
+            <h1 class="date-i">Average Amount : <span class="half">20,00/-</span></h1>
+        </div>
+        <div class="person" th:each="item : ${check}">
+            <h1 class="half" th:text="${item.key}">Prashanth Info</h1>
+            <div class="bill">
+                <table style="width: 100%;">
+                    <tr>
+                      <th>Date</th>
+                      <th>Product</th>
+                      <th>Amount</th>
+                    </tr>
+                    <tr th:each="item1 : ${item.value}">
+                        <td th:text="${item1.createdDate}">12-02-2022</td >
+                        <td th:text="${item1.itemName}">Maria Anders</td >
+                        <td th:text="${item1.amount}">150/-</td >
+                      </tr >
+                </table>
+            </div>
+        </div>
+    </div>    
+</body>
+</html>

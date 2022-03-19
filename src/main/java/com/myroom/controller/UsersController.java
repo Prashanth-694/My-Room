@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myroom.model.ProductDetails;
 import com.myroom.model.Users;
 import com.myroom.repo.UsersRepo;
 //import com.myroom.service.MessageService;
@@ -41,6 +43,11 @@ public class UsersController {
 		System.out.println(user);
 		return repo.findByEmailIdAndPassword(user.getEmailId(), user.getPassword());
 		
+	}
+	
+	@GetMapping("/userDetails/{userId}")
+	public Users fetchUsers(@PathVariable int userId) {
+		return usersService.fetchById(userId);
 	}
 //	@GetMapping("/sendSms")
 //	public void sendSms()

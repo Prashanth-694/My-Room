@@ -5,7 +5,6 @@ package com.myroom.controller;
 //import java.net.URISyntaxException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,17 +14,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.myroom.model.ProductDetails;
-import com.myroom.model.Response;
-//import com.myroom.model.Users;
+import com.myroom.model.Users;
 import com.myroom.repo.UsersRepo;
+//import com.myroom.model.Users;
 //import com.myroom.service.MessageService;
 import com.myroom.service.MyRoomService;
 import com.myroom.service.UsersService;
 @CrossOrigin(origins = {"*", "https://myroom401.herokuapp.com"})
 @RestController
 public class MyRoomController {
-@Autowired
-UsersRepo usersRepo;
 
 @Autowired
 MyRoomService myRoomService;
@@ -36,7 +33,10 @@ MyRoomService myRoomService;
 @Autowired
 UsersService service;
 
-@GetMapping("/userDetails/{userId}")
+@Autowired
+UsersRepo userRepo;
+
+@GetMapping("/productDetails/{userId}")
 public List<ProductDetails> fetchUsers(@PathVariable int userId) {
 	return myRoomService.fetchProductDetailsById(userId);
 }
@@ -58,6 +58,10 @@ public ProductDetails deleteById(@RequestBody ProductDetails details)
 {
 return	myRoomService.deleteById(details);
 }
-
+@GetMapping("/deleteallproducts")
+public void deleteallproducts()
+{
+	myRoomService.deleteallProducts();
+}
 }
 
