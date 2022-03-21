@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -25,7 +26,7 @@ import com.myroom.model.ProductDetails;
 import com.myroom.model.Users;
 import com.myroom.service.MyRoomService;
 import com.myroom.service.UsersService;
-
+@CrossOrigin(origins = {"*", "https://myroom401.herokuapp.com"})
 @Controller
 @RequestMapping("/orders")
 public class PdfGeneratorController {
@@ -78,7 +79,8 @@ public class PdfGeneratorController {
 		byte[] bytes = target.toByteArray();
 
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=order.pdf")
-				.contentType(MediaType.APPLICATION_PDF).body(bytes);
+				.contentType(MediaType.APPLICATION_PDF).location(null)
+				.body(bytes);
 	}
 
 }
