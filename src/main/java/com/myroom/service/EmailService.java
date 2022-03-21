@@ -46,8 +46,8 @@ public class EmailService {
              
             // creating second MimeBodyPart object
             BodyPart messageBodyPart2 = new MimeBodyPart();
-            String filename = "attachment.txt";
-            DataSource source = new FileDataSource(""); 
+            String filename = "order.pdf";
+            DataSource source = new FileDataSource("./tmp/"+filename); 
             messageBodyPart2.setDataHandler(new DataHandler(source)); 
             messageBodyPart2.setFileName(filename); 
              

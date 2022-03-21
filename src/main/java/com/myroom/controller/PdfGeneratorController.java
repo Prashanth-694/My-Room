@@ -1,9 +1,21 @@
 package com.myroom.controller;
 
+import java.io.FileOutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +50,9 @@ public class PdfGeneratorController {
 	MyRoomService myRoomService;
 	@Autowired
 	UsersService usersService;
+	@Autowired
+	private JavaMailSender mailSender;
+	String pdfDir = "./temp/";
 
 	private final TemplateEngine templateEngine;
 
@@ -45,7 +62,7 @@ public class PdfGeneratorController {
 
 	@RequestMapping(path = "/check/pdf")
 	public ResponseEntity<?> genratePDF(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, MessagingException {
+			throws Exception, IOException, MessagingException, URISyntaxException {
 
 		WebContext context = new WebContext(request, response, servletContext);
 		System.out.println("inside fet");
@@ -77,9 +94,51 @@ public class PdfGeneratorController {
 
 		/* extract output as bytes */
 		byte[] bytes = target.toByteArray();
-
+		
+		String fileName="order.pdf";
+		FileOutputStream fos = new FileOutputStream(pdfDir+fileName);
+		fos.write(bytes);
+		fos.flush();
+		fos.close();
+		System.out.println("=========>>>>> File Generated <<<<<==========");
+       //------------------------------------------------------------------------------
+		MimeMessage message = mailSender.createMimeMessage();
+	     
+	    MimeMessageHelper helper = new MimeMessageHelper(message, true);
+	    
+	    helper.setFrom("my401room@gmail.com");
+	    helper.setTo("prashanthmp009@gmail.com");
+	    helper.setSubject("this is sub");
+	    helper.setText("test text");
+	    // Set Subject: subject of the email
+       // message.setSubject("This is Subject");
+         
+        // creating first MimeBodyPart object
+        BodyPart messageBodyPart1 = new MimeBodyPart();
+        messageBodyPart1.setText("This is body of the mail");
+         
+        // creating second MimeBodyPart object
+        BodyPart messageBodyPart2 = new MimeBodyPart();
+        String filename = "order.pdf";
+        DataSource source = new FileDataSource("./tmp/"+filename); 
+        messageBodyPart2.setDataHandler(new DataHandler(source)); 
+        messageBodyPart2.setFileName(filename); 
+         
+        // creating MultiPart object
+        Multipart multipartObject = new MimeMultipart(); 
+        multipartObject.addBodyPart(messageBodyPart1); 
+        multipartObject.addBodyPart(messageBodyPart2);
+ 
+ 
+ 
+        // set body of the email.
+        message.setContent(multipartObject);
+ 
+	   
+	    mailSender.send(message);
+		//------------------------------------------------------------------------------
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=order.pdf")
-				.contentType(MediaType.APPLICATION_PDF).location(null)
+				.contentType(MediaType.APPLICATION_PDF)
 				.body(bytes);
 	}
 
