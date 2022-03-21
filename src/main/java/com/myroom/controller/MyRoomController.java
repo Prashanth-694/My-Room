@@ -36,7 +36,7 @@ UsersService service;
 @Autowired
 UsersRepo userRepo;
 
-@GetMapping("/productDetails/{userId}")
+@GetMapping("/userDetails/{userId}")
 public List<ProductDetails> fetchUsers(@PathVariable int userId) {
 	return myRoomService.fetchProductDetailsById(userId);
 }

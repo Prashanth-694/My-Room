@@ -45,7 +45,7 @@ public class UsersController {
 		
 	}
 	
-	@GetMapping("/userDetails/{userId}")
+	@GetMapping("/userDetailsById/{userId}")
 	public Users fetchUsers(@PathVariable int userId) {
 		return usersService.fetchById(userId);
 	}
