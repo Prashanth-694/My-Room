@@ -55,7 +55,7 @@ public class PdfGeneratorController {
 	UsersService usersService;
 	@Autowired
 	private JavaMailSender mailSender;
-	String pdfDir1 = "/temp/";
+//	String pdfDir1 = "/temp/";
 	String pdfDir2 = "C:\\Other\\";
 	private final TemplateEngine templateEngine;
 
@@ -98,11 +98,11 @@ public class PdfGeneratorController {
 		/* extract output as bytes */
 		byte[] bytes = target.toByteArray();
 		
-		String fileName="order.pdf";
-		FileOutputStream fos = new FileOutputStream(pdfDir1+fileName);
-		fos.write(bytes);
-		fos.flush();
-		fos.close();
+//		String fileName="order.pdf";
+//		FileOutputStream fos = new FileOutputStream(pdfDir1+fileName);
+//		fos.write(bytes);
+//		fos.flush();
+//		fos.close();
 		System.out.println("=========>>>>> File Generated <<<<<==========");
        //------------------------------------------------------------------------------
 		MimeMessage message = mailSender.createMimeMessage();
@@ -114,38 +114,16 @@ public class PdfGeneratorController {
 	    helper.setSubject("this is sub");
 	    helper.setText("test text");
 	    
-		/*
-		 * final InputStreamSource attachmentSource = new ByteArrayResource(bytes);
-		 * DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");
-		 * helper.addAttachment("testattachment", dataSource);
-		 */
-	    // Set Subject: subject of the email
-       // message.setSubject("This is Subject");
-         
-        // creating first MimeBodyPart object
-        
-        BodyPart messageBodyPart1 = new MimeBodyPart();
-        messageBodyPart1.setText("This is body of the mail");
-         
-        // creating second MimeBodyPart object
-        BodyPart messageBodyPart2 = new MimeBodyPart();
-        String filename = "order.pdf";
-        DataSource source = new FileDataSource("/temp/"+filename); 
-        messageBodyPart2.setDataHandler(new DataHandler(source)); 
-        messageBodyPart2.setFileName(filename); 
-         
-        // creating MultiPart object
-        Multipart multipartObject = new MimeMultipart(); 
-        multipartObject.addBodyPart(messageBodyPart1); 
-        multipartObject.addBodyPart(messageBodyPart2);
- 
- 
- 
-        // set body of the email.
-        message.setContent(multipartObject);
- 
+		
+		  final InputStreamSource attachmentSource = new ByteArrayResource(bytes);
+		  DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");
+		  helper.addAttachment("testattachment", dataSource);
+		
 	   
-	    mailSender.send(message);
+ 
+ 
+        mailSender.send(helper.getMimeMessage());
+      
 		//------------------------------------------------------------------------------
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=order.pdf")
 				.contentType(MediaType.APPLICATION_PDF)
