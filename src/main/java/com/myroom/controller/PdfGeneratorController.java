@@ -16,11 +16,14 @@ import javax.mail.Multipart;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -52,8 +55,8 @@ public class PdfGeneratorController {
 	UsersService usersService;
 	@Autowired
 	private JavaMailSender mailSender;
-	String pdfDir = "./temp/";
-
+	String pdfDir1 = "/temp/";
+	String pdfDir2 = "C:\\Other\\";
 	private final TemplateEngine templateEngine;
 
 	public PdfGeneratorController(TemplateEngine templateEngine) {
@@ -87,7 +90,7 @@ public class PdfGeneratorController {
 
 		/* Setup converter properties. */
 		ConverterProperties converterProperties = new ConverterProperties();
-		converterProperties.setBaseUri("http://localhost:9009");
+//		converterProperties.setBaseUri("http://localhost:9009");
 
 		/* Call convert method */
 		HtmlConverter.convertToPdf(orderHtml, target, converterProperties);
@@ -96,7 +99,7 @@ public class PdfGeneratorController {
 		byte[] bytes = target.toByteArray();
 		
 		String fileName="order.pdf";
-		FileOutputStream fos = new FileOutputStream(pdfDir+fileName);
+		FileOutputStream fos = new FileOutputStream(pdfDir1+fileName);
 		fos.write(bytes);
 		fos.flush();
 		fos.close();
@@ -110,17 +113,24 @@ public class PdfGeneratorController {
 	    helper.setTo("prashanthmp009@gmail.com");
 	    helper.setSubject("this is sub");
 	    helper.setText("test text");
+	    
+		/*
+		 * final InputStreamSource attachmentSource = new ByteArrayResource(bytes);
+		 * DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");
+		 * helper.addAttachment("testattachment", dataSource);
+		 */
 	    // Set Subject: subject of the email
        // message.setSubject("This is Subject");
          
         // creating first MimeBodyPart object
+        
         BodyPart messageBodyPart1 = new MimeBodyPart();
         messageBodyPart1.setText("This is body of the mail");
          
         // creating second MimeBodyPart object
         BodyPart messageBodyPart2 = new MimeBodyPart();
         String filename = "order.pdf";
-        DataSource source = new FileDataSource("./tmp/"+filename); 
+        DataSource source = new FileDataSource("/temp/"+filename); 
         messageBodyPart2.setDataHandler(new DataHandler(source)); 
         messageBodyPart2.setFileName(filename); 
          
