@@ -25,6 +25,7 @@ private int userId ;
 private String createdDate;
 @Field
 private int amount;
+private int spentAmount;
 public ProductDetails() {
 	super();
 }
@@ -75,6 +76,23 @@ public void setAmount(int amount) {
 }
 public static long getSerialversionuid() {
 	return serialVersionUID;
+}
+public int getSpentAmount() {
+	return spentAmount;
+}
+public void setSpentAmount(int spentAmount) {
+	this.spentAmount = spentAmount;
+}
+public ProductDetails(String id, String itemName, String description, int userId, String createdDate, int amount,
+		int spentAmount) {
+	super();
+	this.id = id;
+	this.itemName = itemName;
+	this.description = description;
+	this.userId = userId;
+	this.createdDate = createdDate;
+	this.amount = amount;
+	this.spentAmount = spentAmount;
 }
 
 

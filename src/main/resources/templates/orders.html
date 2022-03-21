@@ -69,21 +69,21 @@
         <div class="head">
             <h1 class="text">My-Room</h1>
             <h1 class="text">Invoice</h1>
-            <p class="date">12/12/2022</p>
+            <p class="date" th:text="${currDate}">12/12/2022</p>
         </div>
         <div class="summary">
             <div class="sum-txt">
                 <h1 class="sum-txt-val">Summary</h1>
             </div>
             <div>
-                <h1 class="text-primary">20,000/-<span class="light">.00</span></h1>
-                <p class="date-i">12-12-2022</p>
+                <h1 class="text-primary" th:text="${totalAmount}">20,000/-<span class="light">.00</span></h1>
+                <p class="date-i"><span>Due - </span ><span th:text="${dueDate}"></span ></p>
             </div>    
         </div>
         <div class="body">
             <h1 class="date-i">Account Summary</h1>
-            <h1 class="date-i">Total Amount : <span class="half">20,000/-</span></h1>
-            <h1 class="date-i">Average Amount : <span class="half">20,00/-</span></h1>
+            <h1 class="date-i">Total Amount : <span class="half" th:text="${totalAmount}">20,000/-</span></h1>
+            <h1 class="date-i">Average Amount : <span class="half" th:text="${avgAmount}">20,00/-</span></h1>
         </div>
         <div class="person" th:each="item : ${check}">
             <h1 class="half" th:text="${item.key}">Prashanth Info</h1>
@@ -94,14 +94,21 @@
                       <th>Product</th>
                       <th>Amount</th>
                     </tr>
-                    <tr th:each="item1 : ${item.value}">
+                    <tr th:each="item1,itrStat  : ${item.value}">
                         <td th:text="${item1.createdDate}">12-02-2022</td >
                         <td th:text="${item1.itemName}">Maria Anders</td >
                         <td th:text="${item1.amount}">150/-</td >
                       </tr >
+                      <tr style="background: #d1dd90;" th:if="${item.value.size > 0}">
+                        <td>---</td >
+                        <td>TOTAL</td >
+                        <td th:text="${item.value.get(0).spentAmount}">150/-</td >                        
+                      </tr  >
+                      
                 </table>
             </div>
         </div>
+        <!--th:text="${users[2].firstName}"-->
     </div>    
 </body>
 </html>

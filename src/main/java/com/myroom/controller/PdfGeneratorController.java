@@ -3,6 +3,9 @@ package com.myroom.controller;
 import java.io.FileOutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,9 +74,14 @@ public class PdfGeneratorController {
 		System.out.println("inside fet");
 		List<Users> usersList = usersService.fetchAllUsers();
         int totalAmount=0;
+        System.out.println(java.time.LocalDate.now());    
 		Map<String, Object> ite = new HashMap<>();
 		for (Users us : usersList) {
 			List<ProductDetails> productDetails1 = myRoomService.fetchProductDetailsById(us.getUserId());
+			for(ProductDetails pro : productDetails1) 
+			{
+				pro.setSpentAmount(us.getSpentAmount());
+			}
 			ite.put(us.getUserName(), productDetails1);
 			totalAmount=totalAmount+us.getSpentAmount();
 		}
@@ -81,8 +89,18 @@ public class PdfGeneratorController {
 		System.out.println("total amount : "+totalAmount);
 		context.setVariable("totalAmount", totalAmount);
 		context.setVariable("check", ite);
-
+		context.setVariable("avgAmount", totalAmount/usersList.size());
+		context.setVariable("currDate",java.time.LocalDate.now() );
+		LocalDate date = java.time.LocalDate.now().minusMonths(1);
+		context.setVariable("dueDate", date);
+//        System.out.println("check "+date);
+//        String month = new SimpleDateFormat("MMM").format(date);
+//        System.out.println("month "+month);
+//DateFormat dateFormat=DateFormat.super
+    // Get day from date
+ //   int day = currentDate.getDayOfMonth();
 		String orderHtml = templateEngine.process("orders", context);
+		
 
 		/* Setup Source and target I/O streams */
 
