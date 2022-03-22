@@ -6,6 +6,8 @@ import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -96,15 +98,17 @@ public class PdfGeneratorController {
 		context.setVariable("totalAmount", totalAmount);
 		context.setVariable("check", ite);
 		context.setVariable("avgAmount", totalAmount/usersList.size());
-		context.setVariable("currDate",java.time.LocalDate.now() );
-		LocalDate date = java.time.LocalDate.now().minusMonths(1);
-		context.setVariable("dueDate", date);
-//        System.out.println("check "+date);
-//        String month = new SimpleDateFormat("MMM").format(date);
-//        System.out.println("month "+month);
-//DateFormat dateFormat=DateFormat.super
-    // Get day from date
- //   int day = currentDate.getDayOfMonth();
+		
+				
+		//===========================================
+		GregorianCalendar cal1 = (GregorianCalendar) GregorianCalendar.getInstance();
+		context.setVariable("currDate", new SimpleDateFormat("dd MMM yy").format(cal1.getTime()));
+	    cal1.add((GregorianCalendar.MONTH), -1);
+	    String preMonth=new SimpleDateFormat("dd MMM").format(cal1.getTime());
+	  	  cal1.set(Calendar.DAY_OF_MONTH, cal1.getActualMaximum(Calendar.DAY_OF_MONTH));
+	     String preMonthmaxday=new SimpleDateFormat("dd MMM").format(cal1.getTime());
+	   context.setVariable("dueDateFormat", preMonth+" - "+preMonthmaxday);
+	   //=============================================================
 		String orderHtml = templateEngine.process("orders", context);
 		
 
@@ -134,8 +138,9 @@ public class PdfGeneratorController {
 	    MimeMessageHelper helper = new MimeMessageHelper(message, true);
 	    
 	    helper.setFrom("my401room@gmail.com");
-	    helper.setTo(new String[]{"prashanthmp009@gmail.com","balakrishnamyakala0025@gmail.com","srinivasgoud996@gmail.com","reddynagesh7997@gmail.com","sravan17091997@gmail.com","nageshkumarduddeda@gmail.com","sathish1048@gmail.com"});
-	    helper.setSubject("Invoice From MyRoom");
+	  //  helper.setTo(new String[]{"prashanthmp009@gmail.com","balakrishnamyakala0025@gmail.com","srinivasgoud996@gmail.com","reddynagesh7997@gmail.com","sravan17091997@gmail.com","nageshkumarduddeda@gmail.com","sathish1048@gmail.com"});
+         helper.setTo("prashanthmaskuri009@gmail.com");
+ helper.setSubject("Invoice From MyRoom");
 	    helper.setText("Please find the invoice attachment.");
 	    
 		
