@@ -78,9 +78,12 @@ public class PdfGeneratorController {
 		Map<String, Object> ite = new HashMap<>();
 		for (Users us : usersList) {
 			List<ProductDetails> productDetails1 = myRoomService.fetchProductDetailsById(us.getUserId());
-			for(ProductDetails pro : productDetails1) 
-			{
-				pro.setSpentAmount(us.getSpentAmount());
+//			for(ProductDetails pro : productDetails1) 
+//			{
+//				pro.setSpentAmount(us.getSpentAmount());
+//			}
+			if(productDetails1.size() > 0) {
+				productDetails1.get(0).setSpentAmount(us.getSpentAmount());
 			}
 			ite.put(us.getUserName(), productDetails1);
 			totalAmount=totalAmount+us.getSpentAmount();

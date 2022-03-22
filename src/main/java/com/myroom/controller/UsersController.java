@@ -49,6 +49,11 @@ public class UsersController {
 	public Users fetchUsers(@PathVariable int userId) {
 		return usersService.fetchById(userId);
 	}
+	
+	@PostMapping("/updatePwd")
+	public Users forgotPassword(@RequestBody Users user) {
+		return usersService.forgotPassword(user.getEmailId(), user.getPassword());
+	}
 //	@GetMapping("/sendSms")
 //	public void sendSms()
 //	{

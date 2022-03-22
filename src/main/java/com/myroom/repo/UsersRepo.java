@@ -7,4 +7,5 @@ import com.myroom.model.Users;
 public interface UsersRepo extends MongoRepository<Users, Integer>{
 	
 	Users findByEmailIdAndPassword(String emailId, String password); 
+	Users findByEmailId(String emailId);
 }

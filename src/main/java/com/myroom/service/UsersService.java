@@ -27,6 +27,14 @@ public Users fetchById(int id) {
 	return usersRepo.findById(id).get();
 }
 
+public Users forgotPassword(String email,String password)
+{
+	Users user= usersRepo.findByEmailId(email);
+	user.setPassword(password);
+	usersRepo.save(user);
+	return user;
+}
+
 //public  Users validUser(Users user) {
 //	return usersRepo.findBy(user);
 //}
