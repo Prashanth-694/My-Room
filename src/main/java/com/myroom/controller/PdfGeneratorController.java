@@ -82,7 +82,10 @@ public class PdfGeneratorController {
 //			{
 //				pro.setSpentAmount(us.getSpentAmount());
 //			}
+			System.out.println(productDetails1);
+			System.out.println("checking : "+productDetails1.size());
 			if(productDetails1.size() > 0) {
+				
 				productDetails1.get(0).setSpentAmount(us.getSpentAmount());
 			}
 			ite.put(us.getUserName(), productDetails1);

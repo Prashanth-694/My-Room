@@ -32,7 +32,7 @@ public class MyRoomService {
 	}
 
 	public List<ProductDetails> fetchProductDetailsById(int userId) {
-		System.out.println("Requested " + userId);
+		
 		return productRepository.findByUserId(userId);
 	}
 	
