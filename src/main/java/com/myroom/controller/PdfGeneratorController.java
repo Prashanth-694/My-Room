@@ -138,9 +138,9 @@ public class PdfGeneratorController {
 	    MimeMessageHelper helper = new MimeMessageHelper(message, true);
 	    
 	    helper.setFrom("my401room@gmail.com");
-	  //  helper.setTo(new String[]{"prashanthmp009@gmail.com","balakrishnamyakala0025@gmail.com","srinivasgoud996@gmail.com","reddynagesh7997@gmail.com","sravan17091997@gmail.com","nageshkumarduddeda@gmail.com","sathish1048@gmail.com"});
-         helper.setTo("prashanthmaskuri009@gmail.com");
- helper.setSubject("Invoice From MyRoom");
+	   helper.setTo(new String[]{"prashanthmp009@gmail.com","balakrishnamyakala0025@gmail.com","srinivasgoud996@gmail.com","reddynagesh7997@gmail.com","sravan17091997@gmail.com","nageshkumarduddeda@gmail.com","sathish1048@gmail.com"});
+       
+        helper.setSubject("Invoice From MyRoom");
 	    helper.setText("Please find the invoice attachment.");
 	    
 		
